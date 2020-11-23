@@ -23,6 +23,24 @@ textarea {
   margin-bottom: 10px;
 }
 
+.header-list {
+  color: white !important;
+  font-weight: bold;
+}
+
+.header-list:hover {
+  color: white !important;
+  font-weight: bold;
+}
+
+li .list-label {
+  background-color: lightgray;
+  padding: 3px 20px;
+}
+
+.dropdown-menu:focus {
+  background-color: teal;
+}
 /* タイポグラフィ */
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,15 +74,16 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
+  color: white;
+  /*text-transform: uppercase;*/
+  font-style: italic;
   letter-spacing: -1px;
   padding-top: 9px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 #logo:hover {
-  color: #fff;
+  color: gray;
   text-decoration: none;
 }
 
