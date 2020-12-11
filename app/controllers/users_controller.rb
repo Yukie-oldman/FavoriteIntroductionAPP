@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user ,only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  
   def show
     @user = User.find(params[:id])
   end
@@ -19,8 +21,27 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    @user.destroy
+    flash[:success] = 'ユーザーを削除しました。'
+    redirect_to users_url
+  end
+  
+  def edit
+  end
+  
+  def update
+    @user.update_attributes(user_params)
+    if @user.save
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to user_url @user
+    else
+      flash[:danger] = "ユーザー情報を更新できませんでした。"
+      render :edit
+    end
+  end
   def index
-    @user = User.All
+    @users = User.paginate(page: params[:page])
   end
   
   private
@@ -30,6 +51,6 @@ class UsersController < ApplicationController
     end
     
     def set_user
-      @user = User.find_by(params[:user_id])
+      @user = User.find(params[:id])
     end
 end
