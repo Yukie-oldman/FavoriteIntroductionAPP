@@ -1,7 +1,25 @@
 <h1><%= current_user.name %>のタスク一覧</h1>
-  <%= link_to "タスク新規作成", new_user_task_path(current_user) ,class: "btn btn-primary btn-block btn-signup" %>
-    <ul>
+  <!-- <%= link_to "タスク新規作成", new_user_task_path(current_user) ,class: "btn btn-primary btn-block btn-signup pull-right w-10" %> -->
+  <%= link_to "タスク新規作成", new_user_task_path(current_user) ,class: "btn btn-primary pull-right w-10" %>
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th><%= Task.human_attribute_name :name %></th>
+        <th><%= Task.human_attribute_name :created_at %></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
       <% @tasks.each do |task| %>
-        <li><%= link_to task.name, user_task_path(@user,task) %> </li>
+        <tr>
+          <td><%= link_to task.name, user_task_path(@user,task) %></td>
+          <td><%= l task.created_at %></td>
+          <td>
+            <span><%= link_to "編集", edit_user_task_path(@user,task) ,class: "btn btn-success" %></span>
+            <span><%= link_to "削除", user_task_path(@user,task), method: :delete , class: "btn btn-danger" ,data:{confirm:"#{task.name}を削除しますか？"} %></span>
+          </td>
+        </tr>  
       <% end %>
-    </ul>
+    </tbody>
+  </table>

@@ -1,22 +1,33 @@
 <div class="row">
   <h1><%= @task.name %></h1>
   <div class="col-md-10 col-md-offset-1">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>タスク名</th>
-          <th><%= @task.name %></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>内容</td>
-          <td><%= Rinku.auto_link(@task.description, :all, 'target="_blank"').html_safe %></td>
-        </tr>
-      </tbody>
+    <table class="table table-bordered">
+      <tr>
+        <th class="task_table_th"><%= Task.human_attribute_name :id %></th>
+        <td><%= @task.id %></td>
+      </tr>
+      
+      <tr>
+        <th class="task_table_th"><%= Task.human_attribute_name :name %></th>
+        <td><%= @task.name %></td>
+      </tr>
+      
+      <tr>
+        <th class="task_table_th"><%= Task.human_attribute_name :description %></th>
+        <td><%= Rinku.auto_link(@task.description, :all, 'target="_blank"').html_safe %></td>
+      </tr>
+      
+      <tr>
+        <th class="task_table_th"><%= Task.human_attribute_name :created_at %></th>
+        <td><%= l @task.created_at %></td>
+      </tr>
+      
+      <tr>
+        <th class="task_table_th"><%= Task.human_attribute_name :updated_at %></th>
+        <td><%= l @task.updated_at %></td>
+      </tr>
     </table>
-    <%= link_to "編集", edit_user_task_path(@task) %>
-    <%= link_to "削除", user_task_path(@user, @task),method: :delete %>
+    <%= link_to "編集", edit_user_task_path(@task), class:"btn btn-success" %>
+    <%= link_to "削除", user_task_path(@user, @task),method: :delete , class:"btn btn-danger" ,data:{confirm:"削除しますか？"} %>
   </div>    
 </div>

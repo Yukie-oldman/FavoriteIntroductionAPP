@@ -2,16 +2,18 @@
 <div class="container">
   <div calss="row">
     <div class="col-md-7 center">
+      <br>
       <h1>TaskApp</h1>
       <p>
+        <br>
         TaskAppは簡易ToDo管理ツールです。<br>
         <br>
         ↓↓初めてのご利用↓↓
       </p>
         <% if current_user.nil? or current_user.admin? %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-primary" %>
+          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
         <% else %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-primary disabled" %>
+          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %>
         <% end %>
     </div>
   

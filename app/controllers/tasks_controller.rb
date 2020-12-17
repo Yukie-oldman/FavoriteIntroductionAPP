@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     @task.update_attributes(task_params)
     if @task.save
       flash[:success] = "タスクを更新しました。"
-      redirect_to user_tasks_url @user
+      redirect_to user_task_url @task
     else
       flash[:danger] = "タスクを更新できませんでした。"
       render :edit

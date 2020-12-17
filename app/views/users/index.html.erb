@@ -2,12 +2,26 @@
 <%= will_paginate %>
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
-      <tr>
-  <ul>
+      <tr>名前</tr>
+    </thead>
+
+    
     <% @users.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %>
-      <%= link_to "削除", user ,method: :delete %> </li>
+    <tbody>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %>
+          <% if user.admin? %>
+            <span class="label label-primary">管理者</span>
+          <% else %>
+            <span class="label label-success">一般</span>
+          <% end %>
+        </td>
+        <!-- <td><%= link_to "編集", edit_user_path(user) %></td> -->
+        <td>
+          <span><%= link_to "削除", user ,method: :delete ,class: "btn btn-danger btn-sm pull-right" %></span>
+        </td>
+      </tr>
     <% end %>
-  </ul>
+    </tbody>
   </table>
   <%= will_paginate %>

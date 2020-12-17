@@ -3,6 +3,7 @@
 <% if @user.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
     <ul>
+      <%= @user.errors.count %>件のエラーがあります。
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

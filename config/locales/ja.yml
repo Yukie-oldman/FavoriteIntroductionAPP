@@ -5,10 +5,22 @@ ja:
       user: ユーザー
     attributes:
       task:
-        name: タスク名
-        escription: タスク内容
+        id: ID
+        name: 名称
+        description: 詳細
+        created_at: 作成日
+        updated_at: 更新日
+        
       user:
+        id: ID
         name: 名前
         email: メールアドレス
         picture: ユーザー画像
         password: パスワード
+        created_at: 作成日
+  will_paginate:
+    previous_label: "前へ"
+    next_label: "次へ"
+  time:
+    formats:
+      default: "%Y/%m/%d/ %H:%M"

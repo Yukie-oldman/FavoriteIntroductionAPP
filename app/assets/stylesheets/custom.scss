@@ -15,6 +15,9 @@ textarea {
   resize: vertical;
 }
 
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
 .center {
   text-align: center;
 }
@@ -33,12 +36,20 @@ textarea {
   font-weight: bold;
 }
 
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: teal;
+}
+  
 li .list-label {
   background-color: lightgray;
   padding: 3px 20px;
 }
 
 .dropdown-menu:focus {
+  background-color: teal;
+}
+
+.dropdown-menu:activate {
   background-color: teal;
 }
 /* タイポグラフィ */
