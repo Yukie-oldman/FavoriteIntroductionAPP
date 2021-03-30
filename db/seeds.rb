@@ -23,11 +23,11 @@ guest_user = User.find(2)
 guest2_user = User.find(3)
 
 50.times do |n|
-  task_name = "タスク#{n + 1}"
-  description = "タスク詳細#{n + 1}"
-  admin_user.tasks.create!(name: task_name, description: description)
-  guest_user.tasks.create!(name: task_name, description: description)
-  guest2_user.tasks.create!(name: task_name, description: description)
+  account_name = "出納#{n + 1}"
+  description = "出納詳細#{n + 1}"
+  admin_user.accounts.create!(summary: account_name, description: description, price: 1000, category: "雑費", cashed_on: Time.current)
+  guest_user.accounts.create!(summary: account_name, description: description, price: 1000, category: "雑費", cashed_on: Time.current)
+  guest2_user.accounts.create!(summary: account_name, description: description, price: 1000, category: "雑費", cashed_on: Time.current)
 end
 
 puts "Tasks Created"

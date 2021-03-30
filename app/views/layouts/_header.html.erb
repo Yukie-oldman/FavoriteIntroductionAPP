@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse bg-secondary" style="background-color:teal">
   <div class="container">
-    <%= link_to "TaskManageAPP", root_path, id: "logo" %>
+    <%= link_to "まとめて検索", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "トップ", root_path ,:class => 'header-list' %></li>
@@ -8,7 +8,9 @@
           <% if current_user.admin? %>
             <li><%= link_to "利用者一覧", users_path ,:class => 'header-list' %></li>
           <% end %>
-          <li><%= link_to "タスク作成", new_user_task_path(current_user),:class => 'header-list' %></li>
+          <li><%= link_to "出納登録", new_user_account_path(current_user), class: "header-list" %></li>
+          <li><%= link_to "出納一覧", user_accounts_path(current_user), class: "header-list" %></li>
+          <li><%= link_to "情報トップ", top_user_path(current_user), class: "header-list" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle header-font header-list" data-toggle="dropdown">
               <%= current_user.name %> <b class="caret"></b>
@@ -18,7 +20,7 @@
               <li><%= link_to "プロフィール", current_user %></li>
               <li><%= link_to "設定", edit_user_path(current_user) %></li>
               <li class="list-label">タスク</li>
-              <li><%= link_to "タスク一覧", user_tasks_path(current_user) %></li>
+              <li><%= link_to "出納一覧", user_accounts_path(current_user) %></li>
               <li class="divider"></li>
               <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
             </ul>

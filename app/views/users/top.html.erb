@@ -1,0 +1,32 @@
+<% provide(:title, "あなたの") %>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>総支出額</h1>
+    <h1><%= Account.where(user_id: params[:id]).sum(:price).to_s(:delimited) %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <h2>直近の出費</h2>
+    <table>
+      <thead>
+        <th>日付</th>
+        <th>摘要</th>
+        <th>科目</th>
+        <th>金額</th>
+      </thead>
+
+      <tbody>
+        <% @accounts.each do |account| %>
+        <tr>
+          <td><%= l(account.cashed_on,format: :day) %><td>
+          <td><%= account.summary %><td>
+          <td><%= account.category %><td>
+          <td><%= account.price %><td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

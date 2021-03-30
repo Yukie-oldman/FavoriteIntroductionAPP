@@ -1,13 +1,16 @@
 ja:
   activerecord:
     models:
-      task: タスク
+      account: 出納
       user: ユーザー
     attributes:
-      task:
+      account:
         id: ID
-        name: 名称
-        description: 詳細
+        summary: 摘要
+        category: 科目
+        price: 金額
+        description: 備考
+        tags: タグ
         created_at: 作成日
         updated_at: 更新日
         
@@ -24,3 +27,4 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d/ %H:%M"
+      day: "%Y/%m/%d"

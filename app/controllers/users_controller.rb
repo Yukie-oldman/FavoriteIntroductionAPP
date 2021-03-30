@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def top
+    @accounts = Account.where(user_id: current_user.id).order(cashed_on: :desc).limit('20')
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -47,6 +51,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+  
   def index
     @users = User.paginate(page: params[:page])
   end
