@@ -6,7 +6,9 @@ class StaticPagesController < ApplicationController
   end
 
   def result
-    @keyword = params[:keyword]
+    if params[:keyword]
+      @goods = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    end
   end
 
 end

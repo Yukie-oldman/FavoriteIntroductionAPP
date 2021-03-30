@@ -6,6 +6,11 @@
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages' %>
       
+      <%
+=begin%>
+ <%= User.human_attribute_name(:id) %> 
+<%
+=end%>
       <%= f.label :name, class: "label-signup" %>
       <%= f.text_field :name, class: "form-control" %>
 

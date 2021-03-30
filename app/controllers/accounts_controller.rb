@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_action :set_user
+  before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
   before_action :set_account, only: [:show, :destroy, :edit, :update]
   before_action :set_accounts, only: %i(show edit update destroy)
   before_action :logged_in_user
@@ -53,7 +54,7 @@ class AccountsController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(params[:user_id])
+      @user = User.find(params[:user_id])
     end
 
     def set_account

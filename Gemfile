@@ -16,6 +16,7 @@ gem 'jbuilder',     '~> 2.5'
 gem 'rails-i18n',   '5.1.3'
 gem 'rinku'
 gem 'rename'
+gem 'rakuten_web_service'
 
 group :development, :test do
   gem 'sqlite3'

@@ -3,6 +3,7 @@ ja:
     models:
       account: 出納
       user: ユーザー
+      account: 出納
     attributes:
       account:
         id: ID
