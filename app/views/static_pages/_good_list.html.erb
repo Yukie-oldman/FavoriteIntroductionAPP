@@ -1,11 +1,12 @@
 <% if @goods.present? %>
+<ul>
   <% @goods.each do |good| %>
-    <div class="list">
-    <% if good.image_url %>
-      <%= link_to (image_tag(good.image_url, style: "width: 70px;height: 100px;display: inline-block;")), good.url %>
-      <%end%>
- 
-      <%= good.title %>
-    </div>
+ <div class="list">
+  <% if good['imageFlag'] == 1 %>
+      <%= link_to (image_tag(good['smallImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;")), good['itemUrl'] %>
+      <%#= link_to 'リンク', good['itemUrl'] %>
+    <%end%> 
+      <%= link_to good['itemName'], good['itemUrl'] %>
+    </div> 
   <% end %>
 <% end %>
