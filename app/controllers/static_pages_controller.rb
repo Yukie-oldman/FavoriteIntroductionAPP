@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  include StaticPagesHelper
+
   def top
   end
 
@@ -7,8 +9,9 @@ class StaticPagesController < ApplicationController
 
   def result
     if params[:keyword]
-      @goods = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+      # get_Rakuten_list(params[:keyword])
+      get_Youtube_movie_list(params[:keyword])
     end
-  end
+  end 
 
 end

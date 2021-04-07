@@ -1,0 +1,44 @@
+<% if @youtube_movies.present? %>
+  <table class="result_table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>商品名</th>
+        <th>評価</th>
+        <th>金額</th>
+        <th>付箋</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @youtube_movies.each do |movie| %>
+        <tr>
+          <!--商品イメージ-->
+          <td>
+            <%# if movie['imageFlag'] == 1 %>
+              <%#= link_to (image_tag(movie['smallImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;")), movie['itemUrl'] %>
+            <%# end %>
+          </td>
+
+          <!--商品名-->
+          <td>  
+            <%= @movies[0]["snippet"]["title"] %>
+          </td>
+
+          <!--評価-->
+          <td>  
+            <%#= movie['reviewAverage'] %>
+          </td>
+
+          <!--金額-->
+          <td>
+            <%#= movie['itemPrice'].to_s(:delimited) %>
+          </td>
+
+          <!--ブックマークボタン-->
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody> 
+  </table>
+<% end %>

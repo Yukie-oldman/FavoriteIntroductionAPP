@@ -20,14 +20,9 @@
       </p>
     </div>
     <div class="tab-pane" id="tab_b" role="tabpanel">
-      <div id="search-box">
-        <%= form_tag('/', method: :get) do %>
-          <%= text_field_tag :good, "",  id: "good_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
-        <% end %>
-      </div>
-      <h2>検索結果</h2>
-      <div id='good_list'>
-        <%= render partial: 'good_list' %>
+      <h2>楽天検索結果</h2>
+      <div id='rakuten_list'>
+        <%= render partial: 'rakuten_list' %>
       </div>
     </div>
     <div class="tab-pane" id="tab_c" role="tabpanel">

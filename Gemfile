@@ -17,6 +17,8 @@ gem 'rails-i18n',   '5.1.3'
 gem 'rinku'
 gem 'rename'
 gem 'rakuten_web_service'
+gem 'google-api-client', '<0.9'
+gem 'trollop', '~> 2.1'
 
 group :development, :test do
   gem 'sqlite3'
