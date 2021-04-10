@@ -1,32 +1,26 @@
 <% if @youtube_movies.present? %>
-  <table class="result_table">
+ <table class="result_table">
     <thead>
       <tr>
-        <th></th>
-        <th>商品名</th>
-        <th>評価</th>
-        <th>金額</th>
+        <th>動画サムネイル</th>
+        <th>動画タイトル</th>
+        <th>視聴回数</th>
         <th>付箋</th>
       </tr>
     </thead>
     <tbody>
       <% @youtube_movies.each do |movie| %>
+      <%# debugger %>
         <tr>
-          <!--商品イメージ-->
+        <%# debugger %>
+          <!--動画サムネイル-->
           <td>
-            <%# if movie['imageFlag'] == 1 %>
-              <%#= link_to (image_tag(movie['smallImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;")), movie['itemUrl'] %>
-            <%# end %>
+            <%= image_tag movie.snippet.thumbnails.medium.url %>
           </td>
 
-          <!--商品名-->
-          <td>  
-            <%= @movies[0]["snippet"]["title"] %>
-          </td>
-
-          <!--評価-->
-          <td>  
-            <%#= movie['reviewAverage'] %>
+          <!--動画タイトル-->
+          <td>               
+            <%= link_to movie.snippet.title, 'https://www.youtube.com/watch?v=' + movie.id.videoId, target: :_blank %>
           </td>
 
           <!--金額-->
@@ -40,5 +34,5 @@
         </tr>
       <% end %>
     </tbody> 
-  </table>
+  </table> 
 <% end %>

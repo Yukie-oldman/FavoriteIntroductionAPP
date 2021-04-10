@@ -15,6 +15,6 @@ def get_service
     application_version: '1.0',
     user_agent: 'Foo/1.0 google-api-ruby-client/0.8.6 Linux/4.15.0-65-generic (gzip)'
   )
-  youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME + YOUTUBE_API_VERSION)
+  youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
   return client, youtube
 end
