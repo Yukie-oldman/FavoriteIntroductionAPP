@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  # root 'static_pages#top'
-  root 'static_pages#search'
+  root 'static_pages#top'
   post '/result', to: 'static_pages#result'
   get '/signup', to: 'users#new'
   

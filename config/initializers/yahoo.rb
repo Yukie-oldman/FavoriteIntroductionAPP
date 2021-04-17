@@ -1,0 +1,2 @@
+Yahoo_AppID = 'dj00aiZpPURMMWVTTVlvNjJ0ciZzPWNvbnN1bWVyc2VjcmV0Jng9ZWU-'
+Yahoo_SerccretID = '2A1BekZGbrDqWP9q9smQHWDFqR9ypWDr4Exi8QVc'

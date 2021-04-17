@@ -34,4 +34,9 @@ module StaticPagesHelper
       puts e.result.body
     end
   end
+
+  # def get_yahoo_list
+  #   requestURL = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
+  #   @yahoo_list = 
+  # end
 end
