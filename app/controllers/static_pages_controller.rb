@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
 
   def result
 
-    if logged_in?
+    # if logged_in?
       
 
 
