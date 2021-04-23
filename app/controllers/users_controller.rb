@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user ,only: [:show, :edit, :update, :destroy, :new]
-  before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user ,only: [:show, :edit, :update, :destroy, :edit_profile]
+  before_action :logged_in_user, only: [:show, :edit, :update, :destroy, :edit_profile]
   before_action :admin_user , only: [:index]
   before_action :admin_or_correct, only: [:show, :edit, :destroy, :update]
   
@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     end
   end
   
-  def top
-    @accounts = Account.where(user_id: current_user.id).order(cashed_on: :desc).limit('20')
+  def edit_profile
+    
   end
   
   def create
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = '新規作成に成功しました。'
-      redirect_to @user
+      redirect_to edit_profile_user_path @user
     else
       render :new
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:success] = 'ユーザーを削除しました。'
-    redirect_to users_url
+    redirect_to root_url
   end
   
   def edit
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile)
     end
     
     def set_user

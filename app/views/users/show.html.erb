@@ -2,24 +2,14 @@
 
 <div class="row">
   <h1>プロフィール</h1>
+  <img src="/tetsudou.png">
   <div class="col-md-10 col-md-offset-1">
     <table class="table table-bordered">
       <tr>
-        <th class="plofile_table_th"><%= User.human_attribute_name :id %></th>
-        <td><%= @user.id %></td>
-      </tr>
-      <tr>
-        <th class="plofile_table_th"><%= User.human_attribute_name :name %></th>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <th class="plofile_table_th"><%= User.human_attribute_name :email %></th>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <th class="plofile_table_th"><%= User.human_attribute_name :created_at %></th>
-        <td><%= l @user.created_at %></td>
+        <th class="plofile_table_th"><%= User.human_attribute_name :profile %></th>
+        <td><%= @user.profile %></td>
       </tr>
     </table>
+    <%= link_to "プロフィール編集", edit_profile_user_path(@user), class: "btn btn-primary" %>
   </div>    
 </div>

@@ -10,19 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_031412) do
+ActiveRecord::Schema.define(version: 2021_04_23_011547) do
 
-  create_table "accounts", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "summary"
-    t.string "category"
-    t.integer "price"
-    t.string "description"
+  create_table "introductions", force: :cascade do |t|
+    t.string "name"
+    t.string "contents"
     t.string "tags"
-    t.datetime "cashed_on"
+    t.integer "good"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_accounts_on_user_id"
+    t.index ["user_id"], name: "index_introductions_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "introduction_id"
+    t.integer "voter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "introduction_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_031412) do
     t.boolean "admin", default: false
     t.string "remember_digest"
     t.string "password_digest"
+    t.string "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

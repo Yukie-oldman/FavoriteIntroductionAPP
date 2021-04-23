@@ -5,13 +5,12 @@ ja:
       user: ユーザー
       account: 出納
     attributes:
-      account:
+      introduction:
         id: ID
-        summary: 摘要
-        category: 科目
-        price: 金額
-        description: 備考
+        name: 好きなものの名前
+        contents: 紹介文
         tags: タグ
+        good: 好評価
         created_at: 作成日
         updated_at: 更新日
         

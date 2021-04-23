@@ -1,0 +1,36 @@
+<h1><%= @user.name %>さんの紹介一覧</h1>
+  <% if @introductions.count == 0 %>
+    <h1>紹介しているものはありません。<br>あなたの好きを紹介してみませんか？</h1>
+    <%= link_to "紹介する！", new_user_introduction_path(current_user), class: "btn btn-primary pull-center" %>
+
+  <% else %>
+    <%= link_to "紹介する！", new_user_introduction_path(current_user), class: "btn btn-primary pull-right w-10" %>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th><%= Introduction.human_attribute_name :name %></th>
+          <th><%= Introduction.human_attribute_name :tags %></th>
+          <th><%= Introduction.human_attribute_name :good %></th>
+          <th><%= Introduction.human_attribute_name :created_at %></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @introductions.each do |introduction| %>
+          <tr>
+            <td><%= link_to introduction.name, user_introduction_path(@user,introduction) %></td>
+            <td><%= introduction.tags %></td>
+            <td>
+              <%= "#{introduction.good}いいね!" if introduction.good.present? %>
+            </td>
+            <td><%= l(introduction.created_at, format: :day) %></td>
+            <td>
+              <span><%= link_to "編集", edit_user_introduction_path(@user, introduction) ,class: "btn btn-success" %></span>
+              <span><%= link_to "削除", user_introduction_path(@user, introduction), method: :delete , class: "btn btn-danger" ,data:{confirm:"#{introduction.name}を削除しますか？"} %></span>
+            </td>
+          </tr>  
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>

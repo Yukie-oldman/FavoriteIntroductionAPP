@@ -1,40 +1,40 @@
-<% provide(:title, "Top") %>
-<div class="container">
-  <div calss="row">
-    <div class="col-md-7 center">
-      <br>
-      <h1>検索フォーム</h1>
-      <br>
-      <!--ここに検索フォームを作成-->
-      <p>検索キーワード</p>
-      <span>
-      <%= form_with(url: result_path, local: true) do |f| %>
-        <%= f.label "キーワード" %>
-        <%= f.text_field :keyword, placeholder: "キーワードを入力してください" %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
-      <% end %>
-      <%
-=begin%>
- <input type="text" name="keyword" placeholder ="キーワードを入力してください"></input>
-      <%= link_to '検索', result_path, class: "btn btn-primary" %> 
-<%
-=end%>
-      </span>
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active" role="presentation">
+      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">Amazon</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">楽天</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">Yahoo!</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_d" data-toggle="tab" href="#tab_d" role="tab">Youtube</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab_a" role="tabpanel">
       <p>
-      販売サイト
-      <%= check_box :remember_me, id: "Amazon", checked: 'checked' %>
-      Amazon
-      <%= check_box :remember_me, id: "Rakuten", checked: 'checked' %>
-      楽天
-      <%= check_box :remember_me, id: "Yahoo", checked: 'checked' %>
-      Yahoo
-      </p>
-      <p>
-      動画サイト
-      <%= check_box :remember_me, id: "Youtube", checked: 'checked' %>
-      Youtube
+        Amazon検索結果
       </p>
     </div>
+    <div class="tab-pane" id="tab_b" role="tabpanel">
+      <h2>楽天検索結果</h2>
+      <div id='rakuten_list'>
+        <%= render partial: 'rakuten_list' %>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab_c" role="tabpanel">
+      <p>
+        Yahoo検索結果
+      </p>
+    </div>
+    <div class="tab-pane" id="tab_d" role="tabpanel">
+      <h2>youtube動画検索結果</h2>
+      <div id='youtube_list'>
+        <%= render partial: 'youtube_list' %>
+      </div>
+    </div>
   </div>
-  
 </div>

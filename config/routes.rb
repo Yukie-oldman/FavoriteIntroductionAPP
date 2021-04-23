@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'
-  post '/result', to: 'static_pages#result'
+  get '/search', to: 'static_pages#search'
+  get '/introductions', to: 'static_pages#introductions'
   get '/signup', to: 'users#new'
   
   get    '/login', to: 'sessions#new'
@@ -9,9 +10,15 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
-    resources :accounts
+    resources :introductions
     member do
-      get 'top'
+      get 'edit_profile'
+    end
+  end
+  resources :introductions do
+    member do
+      get 'like'
+      get 'unlike'
     end
   end
 end

@@ -1,0 +1,31 @@
+<h1>みんなの紹介一覧</h1>
+  <%= link_to "紹介する！", new_user_introduction_path(current_user), class: "btn btn-primary pull-right w-10" %>
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th><%= Introduction.human_attribute_name :name %></th>
+        <th><%= Introduction.human_attribute_name :tags %></th>
+        <th><%= Introduction.human_attribute_name :good %></th>
+        <th><%= Introduction.human_attribute_name :created_at %></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @introductions.each do |introduction| %>
+      <% like = @likes.where(introduction_id: introduction.id).count %>     
+        <tr>
+          <td><%= link_to introduction.name, introduction_path(introduction) %></td>
+          <td>
+            <% @tags.where(introduction_id: introduction.id).each do |tag| %>
+             <%= link_to tag.name, introductions_path(keyword: tag.name) %>
+            <% end %>
+          </td>
+          <td>
+            <%= "#{like}いいね!" if like > 0 %>
+          </td>
+          <td><%= l(introduction.created_at, format: :day) %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  </table>
