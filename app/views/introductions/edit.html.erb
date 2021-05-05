@@ -1,5 +1,7 @@
 <% provide(:button_text, '更新') %>
-<h1>タスク編集</h1>
+<% provide(:url, user_introduction_path) %>
+
+<h1>紹介内容編集</h1>
 
 <% if @introduction.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
@@ -11,20 +13,8 @@
     </ul>
   </div>
 <% end %>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @introduction, url: user_introduction_path, local: true) do |f| %>
-      <%= f.label :name, class: "label-signup" %>
-      <%= f.text_field :name, class: "form-control" %>
-
-      <%= f.label :tags, class: "label-signup" %>
-      <%= f.text_field :tags, class: "form-control" %>
-
-      <%= f.label :contents, class: "label-signup" %>
-      <%= f.text_area :contents, class: "form-control" %>
-
-      <%= f.submit yield(:button_text), class: "btn btn-primary btn-signup btn-block" %>
-    <% end %>
+    <%= render 'introductions/form' %>
   </div>
 </div>

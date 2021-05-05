@@ -1,27 +1,21 @@
 class IntroductionsController < ApplicationController
   before_action :set_user
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_introduction, only: [:show, :destroy, :edit, :update]
+  before_action :set_introduction, only: [:show, :destroy, :edit, :update, :like, :unlike]
+  before_action :set_likes, onlt: [:show, :like, :unlike] 
   before_action :logged_in_user
   before_action :correct_user
   
   def show
-    @likes = Like.where(introduction_id: params[:id])
-    @tags = Tag.all
+    @tags = Tag.where(introduction_id: params[:id])
   end
   
   def like
-    @user = User.find(current_user.id)
-    @like = Like.new(introduction_id: params[:id], voter_id: @user.id)
-    @like.save
-    redirect_to introduction_path(params[:id])
+    @introduction.likes.create(voter_id: current_user.id)
   end
 
   def unlike
-    @user = User.find(current_user.id)
-    @like = Like.find_by(introduction_id: params[:id], voter_id: @user.id)
-    @like.destroy
-    redirect_to introduction_path(params[:id])
+    @introduction.likes.find_by(voter_id: current_user.id).destroy
   end
 
   def new
@@ -29,12 +23,9 @@ class IntroductionsController < ApplicationController
   end
   
   def create
-    @introduction = @user.introductions.build(introduction_params)
+    @introduction = @user.introductions.new(introduction_params)
     if @introduction.save
-      tags = introduction_params[:tags].split(',')
-        tags.each do |tag|
-      @tag = Tag.create(introduction_id: @introduction.id, name: tag)
-    end
+      @introduction.create_tags(introduction_params[:buf_tags])
       flash[:success] = "好なものの紹介を投稿しました！"
       redirect_to user_introduction_url @user,@introduction
     else
@@ -60,17 +51,18 @@ class IntroductionsController < ApplicationController
   def update
     @introduction.update_attributes(introduction_params)
     if @introduction.save
-      flash[:success] = "タスクを更新しました。"
+      @introduction.tags.destroy_all
+      @introduction.create_tags(introduction_params[:buf_tags])
+      flash[:success] = "投稿内容を更新しました！"
       redirect_to user_introduction_url @user,@introduction
     else
-      flash[:danger] = "タスクを更新できませんでした。"
       render :edit
     end
   end
   private
   
     def introduction_params
-      params.require(:introduction).permit(:name, :contents, :tags)
+      params.require(:introduction).permit(:caption, :name, :contents, :buf_tags, :image1, :image2, :image3)
     end
 
     def set_user
@@ -81,4 +73,7 @@ class IntroductionsController < ApplicationController
       @introduction = Introduction.find(params[:id])
     end
 
+    def set_likes
+      @likes = Like.where(introduction_id: params[:id])
+    end
 end

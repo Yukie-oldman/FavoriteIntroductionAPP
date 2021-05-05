@@ -1,4 +1,6 @@
 <% provide(:button_text, '投稿する！') %>
+<% provide(:url, user_introductions_path) %>
+
 <h1>好きなものを紹介しよう！</h1>
 
 <% if @introduction.errors.any? %>
@@ -14,17 +16,6 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @introduction, url: user_introductions_path, local: true) do |f| %>
-      <%= f.label :name, class: "label-signup" %>
-      <%= f.text_field :name, class: "form-control" %>
-
-      <%= f.label 'タグ', class: "label-signup" %>
-      <%= f.text_field :tags, class: "form-control" %>
-
-      <%= f.label :contents, class: "label-signup" %>
-      <%= f.text_area :contents, class: "form-control" %>
-
-      <%= f.submit yield(:button_text), class: "btn btn-primary btn-signup btn-block" %>
-    <% end %>
+    <%= render 'introductions/form' %>
   </div>
 </div>

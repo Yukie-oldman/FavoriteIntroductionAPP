@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails'
 gem 'bcrypt'
@@ -19,6 +19,12 @@ gem 'rename'
 gem 'rakuten_web_service'
 gem 'google-api-client', '<0.9'
 gem 'trollop', '~> 2.1'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'nokogiri'
+gem 'optimist'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
 
 group :development, :test do
   gem 'sqlite3'
@@ -32,9 +38,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-  gem 'pg', '0.20.0'
-end
+# group :production do
+#   gem 'pg', '0.20.0'
+# end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
 # Mac環境でもこのままでOKです

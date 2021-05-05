@@ -19,8 +19,8 @@
           </td>
 
           <!--動画タイトル-->
-          <td>               
-            <%= link_to movie.snippet.title, 'https://www.youtube.com/watch?v=' + movie.id.videoId, target: :_blank %>
+          <td>              
+            <%= link_to movie.snippet.title, "https://www.youtube.com/watch?v=#{movie.id.videoId}", target: :_blank %>
           </td>
 
           <!--金額-->

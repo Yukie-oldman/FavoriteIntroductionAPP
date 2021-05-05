@@ -5,6 +5,9 @@
 
 body {
   padding-top: 60px;
+  li {
+    display: block;
+  }
 }
 
 section {
@@ -26,19 +29,25 @@ textarea {
   margin-bottom: 10px;
 }
 
-.header-list {
-  color: white !important;
-  font-weight: bold;
+li {
+  display: block;
 }
+// .header-list {
+//   // color: white !important;
+//   // font-weight: bold;
+// }
 
+select {
+  height: 34px;
+}
 .header-list:hover {
   color: white !important;
   font-weight: bold;
 }
 
-.navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: teal;
-}
+// .navbar-inverse .navbar-nav > .open > a:focus {
+//   background-color: teal;
+// }
   
 li .list-label {
   background-color: lightgray;

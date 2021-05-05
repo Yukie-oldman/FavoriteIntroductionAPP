@@ -1,17 +1,19 @@
+<div class="col-offset-6">
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages' %>
   
   <%= f.label :name, class: "label-signup" %>
-  <%= f.text_field :name, class: "form-control" %>
+  <%= f.text_field :name, class: "form-control", placeholder: "使用したいアカウント名を入力" %>
 
   <%= f.label :email, class: "label-signup" %>
-  <%= f.email_field :email, class: "form-control" %>
+  <%= f.email_field :email, class: "form-control", placeholder: "メールアドレスを入力" %>
 
   <%= f.label :password, class: "label-signup" %>
-  <%= f.password_field :password, class: "form-control" %>
+  <%= f.password_field :password, class: "form-control", placeholder: "パスワードを入力（6文字以上）"  %>
 
   <%= f.label :password_confirmation, "Confirmation", class: "label-signup" %>
-  <%= f.password_field :password_confirmation, class: "form-control" %>
+  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "パスワード(確認用)"  %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-signup" %>
+  <%= f.submit yield(:button_text), class: "btn btn-info btn-block btn-signup" %>
 <% end %>
+</div>

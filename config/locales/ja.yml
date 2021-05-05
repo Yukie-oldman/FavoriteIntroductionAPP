@@ -7,7 +7,8 @@ ja:
     attributes:
       introduction:
         id: ID
-        name: 好きなものの名前
+        caption: 見出し
+        name: 商品・サービス名
         contents: 紹介文
         tags: タグ
         good: 好評価
@@ -20,6 +21,7 @@ ja:
         email: メールアドレス
         picture: ユーザー画像
         password: パスワード
+        password_confirmation: パスワード（確認用）
         created_at: 作成日
   will_paginate:
     previous_label: "前へ"

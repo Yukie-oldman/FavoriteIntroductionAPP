@@ -1,0 +1,24 @@
+<%= form_with(model: @introduction, url: yield(:url), local: true) do |f| %>
+
+<%= f.label :caption, class: "label-signup" %>
+<%= f.text_field :caption, class: "form-control", placeholder: "紹介したいものを一言で表してみましょう。" %>
+
+<%= f.label :name, class: "label-signup" %>
+<%= f.text_field :name, class: "form-control", placeholder: "商品・サービス名が特定できるキーワードを入力してください。" %>
+
+<%= f.label 'タグ', class: "label-signup" %>
+<%= f.text_field :buf_tags, class: "form-control", placeholder: "複数入力する場合、タグとタグはカンマ(,)で区切ってください。" %>
+
+<%= f.label :contents, class: "label-signup" %>
+<%= f.text_area :contents, placeholder: "紹介文を入力してください。\r\n\r\n入力例\r\n■どんなところが良いですか\r\n■他と一線を画す長所など\r\n■こんな人におすすめしたい\r\n　　　　　　　　　　など", rows: "10",  class: "form-control" %>
+
+<p>画像1</p>
+<%= f.attachment_field :image1 %>
+
+<p>画像2</p>
+<%= f.attachment_field :image2 %>
+
+<p>画像3</p>
+<%= f.attachment_field :image3 %>
+<%= f.submit yield(:button_text), class: "btn btn-primary btn-signup btn-block" %>
+<% end %>
