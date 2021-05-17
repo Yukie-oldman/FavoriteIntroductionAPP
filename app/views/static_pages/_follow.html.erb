@@ -1,0 +1,11 @@
+<% if @follow_tags.find_by(name: target).present? %>
+<div>
+  <%= link_to target, introductions_path(tag: target), class: "btn btn-default btn_left", style: "background-color: skyblue;" %>
+  <%= link_to embedded_svg('dash.svg', class: "follow"), unfollow_path(tagname: target), remote: true, class: "btn btn-default btn_right", style: "background-color: skyblue;" %>
+</div>
+<% else %>
+<div>
+  <%= link_to target, introductions_path(tag: target), class: "btn btn-default btn_left" %>
+  <%= link_to embedded_svg('plus.svg', class: "notfollow"), follow_path(tagname: target), remote: true, class: "btn btn-default btn_right" %>
+  </div>
+<% end %>

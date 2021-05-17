@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = '新規作成に成功しました。'
-      redirect_to edit_profile_user_path @user
+      redirect_to user_url @user
     else
       render :new
     end

@@ -1,75 +1,45 @@
-<%
-=begin%>
- <div class="row">
-  <h1><%= @introduction.name %></h1>
-  <div class="col-md-10 col-md-offset-1">
-    <table class="table table-bordered">
-      <tr>
-        <th class="task_table_th"><%= Introduction.human_attribute_name :caption %></th>
-        <td>
-          <%= @introduction.caption %>
-        </td>
-      </tr>
-
-      <tr>
-        <th class="task_table_th"><%= Introduction.human_attribute_name :name %></th>
-        <td>
-          <%= @introduction.name %>
-          <%= link_to '検索する', search_path(keyword: @introduction.name), class: "btn btn-primary pull-right" %>
-        </td>
-      </tr>
-      
-      <tr>
-        <th class="task_table_th"><%= Introduction.human_attribute_name :tags %></th>
-        <td>
-          <% @tags.each do |tag| %>
-            <%= link_to "#" + tag.name, introductions_path(tag: tag.name) %>
-          <% end %>
-        </td>
-      </tr>
-      
-      <tr>
-        <th class="task_table_th"><%= Introduction.human_attribute_name :contents %></th>
-        <td><%= Rinku.auto_link(@introduction.contents, :all, 'target="_blank"').html_safe %></td>
-      </tr>
-
-    </table>
-    <!-- ↓追加(部分的に更新したい場所)↓ -->
-    <div id="like_button">
-      <%= render partial: 'like' %>
-    </div>
-    <!-- ↑ここまで↑ -->
-  </div>    
-</div> 
-<%
-=end%>
-<div class="container-fruid">
+<div class="container-fruid" style="padding-top: 100px;">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <%= attachment_image_tag @introduction, :image1, :fill, 250, 250, format: 'jpeg' %>
-        <%= attachment_image_tag @introduction, :image2, :fill, 250, 250, format: 'jpeg' %>
-        <%= attachment_image_tag @introduction, :image3, :fill, 250, 250, format: 'jpeg' %>
+
+      <!--サムネイル表示-->
+      <div class="col-md-3">
+        <% if @introduction.image1.nil? && @introduction.image2.nil? && @introduction.image3.nil? %>
+          <%= image_tag 'noimage.png', size: '250x250' %>
+        <% else %>
+          <%= attachment_image_tag @introduction, :image1, :fill, 250, 250, format: 'jpeg' %>
+          <%= attachment_image_tag @introduction, :image2, :fill, 250, 250, format: 'jpeg' %>
+          <%= attachment_image_tag @introduction, :image3, :fill, 250, 250, format: 'jpeg' %>
+        <% end %>
       </div>
-      <div class="col-md-8">
-      
+
+      <div class="col-md-9">
         <!--タグ-->
         <% @tags.each do |tag| %>
-          <%= link_to "#" + tag.name, introductions_path(tag: tag.name) %>
+          <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default" %>
         <% end %>
-        
-        <!--見出し-->
-        <h1 style="text-align: left"><%= @introduction.name %></h1>
-        
-        <!--検索ボタン-->
-        <%= link_to '楽天で検索', search_path(keyword: @introduction.name), class: "btn btn-primary pull-right" %>
-        <%= link_to 'Youtubeで検索', search_path(keyword: @introduction.name), class: "btn btn-primary pull-right" %>
-        
+
+        <!--アイテム名-->
+        <div class="item_title">
+          <%= @introduction.name %>
+        </div>
+
         <!--キャプション-->
-        <h2 style="text-align: left"><%= @introduction.caption %></h2>
-        
+        <div class="caption">
+          <%= @introduction.caption %>
+        </div>
+
+        <div>
+          <%= link_to '楽天で検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
+          <%= link_to 'Youtubeで検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
+        </div>
+
         <!--紹介の内容-->
-        <%= Rinku.auto_link(simple_format(@introduction.contents), :all, 'target="_blank"').html_safe %>
+        <h3 style="border-bottom-style: solid;">説明</h3>
+
+        <div>
+          <%= Rinku.auto_link(simple_format(@introduction.contents), :all, 'target="_blank"').html_safe %>
+        </div>
         
         <!--いいねボタン-->
         <div id="like_button">

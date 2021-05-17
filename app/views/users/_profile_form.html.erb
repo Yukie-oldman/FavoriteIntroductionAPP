@@ -1,9 +1,0 @@
-
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
-      
-      <%= f.label :profile, class: "label-signup" %>
-      <%= f.text_area :profile, class: "form-control", placeholder: "200文字以内" %>
-
-      <%= f.submit "登録", class: "btn btn-info btn-block btn-signup" %>
-    <% end %>

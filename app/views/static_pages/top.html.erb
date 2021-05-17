@@ -3,17 +3,21 @@
   <div calss="row">
     <div class="col-md-7 center">
       <br>
-      <h1>商品・サービス紹介アプリ</h1>
+      <h1>商品・サービス紹介</h1>
+      <br>
       <p>
-        <br>
-        <br>
-        ↓↓初めてのご利用↓↓
+      このサイトは、使ってみて良かった商品や<br>
+      サービスの紹介を投稿するサイトです。<br>
+      好きな商品のファンを増やしたり、<br>
+      誰かの紹介を参考に買う物を決めたり、<br>
+      いろいろご活用ください。
       </p>
-        <% if current_user.nil? or current_user.admin? %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
-        <% else %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %>
-        <% end %>
+      <br>
+      <% if current_user.nil? or current_user.admin? %>
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
+      <% else %>
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %>
+      <% end %>
     </div>
   
     <div>

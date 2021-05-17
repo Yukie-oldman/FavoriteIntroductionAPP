@@ -135,3 +135,21 @@ p {
     color: $state-danger-text;
   }
 }
+
+.btn_left {
+  border-radius: 10px 0px 0px 10px;
+  border-width: 1px 0px 1px 1px;
+  margin-right: -2px;
+}
+
+.btn_right {
+  border-radius: 0px 10px 10px 0px;
+  border-width: 1px 1px 1px 0px;
+  margin-left: -2px;
+}
+
+.notfollow {
+  transform:scale(1.5);
+  // padding-left: 3px;
+  vertical-align: middle;
+}

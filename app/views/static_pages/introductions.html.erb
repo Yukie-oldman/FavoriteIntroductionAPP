@@ -1,64 +1,46 @@
 <h1>みんなの紹介一覧</h1>
-  <%= form_with url: introductions_path, local: true, method: :get do |f| %>
-    <div class="row">
-      <div class="form-inline form-group pull-right">
+  
+  <!--検索フォーム-->
+  <div class="row">
+    <div class="form-inline form-group pull-right">
+      <%= form_with url: introductions_path, local: true, method: :get do |f| %>  
         <%= f.select :category, [['商品・サービス','1'],['紹介見出し','2'],['タグ','3']], style: "height 100px" %>
         <%= f.text_field :keyword, class: "form-control", placeholder: "キーワードを入力" %>
         <%= f.submit '検索', class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
-
-  <%= link_to "紹介する！", new_user_introduction_path(current_user), class: "btn btn-primary pull-right w-10" %>
-  <table class="table table-condensed table-hover">
-    <%
-=begin%>
- <thead>
-      <tr>
-        <th><%= Introduction.human_attribute_name :name %></th>
-        <th><%= Introduction.human_attribute_name :tags %></th>
-        <th><%= Introduction.human_attribute_name :good %></th>
-        <th><%= Introduction.human_attribute_name :created_at %></th>
-        <th></th>
-      </tr>
-    </thead> 
-<%
-=end%>
-
-    <tbody>
-      <% @introductions.each do |introduction| %>
-      <% like = @likes.where(introduction_id: introduction.id).count %>
-        <%
-=begin%>
- <tr>
-          <td>
-            <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
-          </td>
-          <td colspan="4">
-          <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
-            <% @tags.where(introduction_id: introduction.id).each do |tag| %>
-              <%= link_to "#" + tag.name, introductions_path(tag: tag.name) %>
-            <% end %>
-            <p><h4><%= link_to introduction.name, introduction_path(introduction) %></h4></p>
-            <h5><%= introduction.caption %></h5>
-            <%= "#{like}いいね!" if like > 0 %>
-          </td>
-        </tr> 
-<%
-=end%>
-        <div style = "padding: 10px">
-          <div style = "display:inline-block;vertical-align:top;">
-            <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
-          </div>
-          <div style = "display:inline-block;">
-            <% @tags.where(introduction_id: introduction.id).each do |tag| %>
-              <%= link_to "#" + tag.name, introductions_path(tag: tag.name) %>
-            <% end %>
-            <p><h4><%= link_to introduction.name, introduction_path(introduction) %></h4></p>
-            <h5><%= introduction.caption %></h5>
-            <%= "#{like}いいね!" if like > 0 %>
-          </div>
-        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div>
+
+  <!--検索結果表示エリア-->
+  <div>
+    <% @introductions.each do |introduction| %>
+      
+      <!--アイテム-->
+      <div style = "padding: 10px ">
+        
+        <!--サムネイル-->
+        <div style = "display:inline-block;vertical-align:top; padding-right: 20px;">
+          <% if introduction.image1.present? %>
+            <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
+          <% else %>
+            <%= image_tag 'noimage.png', size: '100x100' %>
+          <% end %>
+        </div>
+
+        <div style = "display:inline-block;">
+          <!--タグ-->
+          <% @tags.where(introduction_id: introduction.id).each do |tag| %>
+            <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default btn-xs" %>
+          <% end %>
+          <!--アイテム名-->
+          <p><h4><%= link_to introduction.name, introduction_path(introduction) %></h4></p>
+          
+          <!--キャプション-->
+          <h5><%= introduction.caption %></h5>
+
+          <!--いいね-->
+          <%= introduction.good %>
+        </div>
+      </div>
+    <% end %>
+  </div>
