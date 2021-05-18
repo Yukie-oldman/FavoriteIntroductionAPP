@@ -1,25 +1,28 @@
-<h1>みんなの紹介一覧</h1>
-  
-  <!--検索フォーム-->
-  <div class="row">
-    <div class="form-inline form-group pull-right">
-      <%= form_with url: introductions_path, local: true, method: :get do |f| %>  
-        <%= f.select :category, [['商品・サービス','1'],['紹介見出し','2'],['タグ','3']], style: "height 100px" %>
-        <%= f.text_field :keyword, class: "form-control", placeholder: "キーワードを入力" %>
-        <%= f.submit '検索', class: "btn btn-primary" %>
-      <% end %>
+  <div class="row page-head">
+    <div class="page_title col-md-7">
+      <h1>みんなの紹介一覧</h1>
+    </div>
+    <!--検索フォーム-->
+    <div class="col-md-5">
+      <div class="form-inline form-group pull-right align-bottom">
+        <%= form_with url: introductions_path, local: true, method: :get do |f| %>  
+          <%= f.select :category, [['商品・サービス','1'],['紹介見出し','2'],['タグ','3']], style: "height 100px" %>
+          <%= f.text_field :keyword, class: "form-control", placeholder: "キーワードを入力" %>
+          <%= f.submit '検索', class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <!--検索結果表示エリア-->
-  <div>
+  <div class="col-md-8 page-content-leftside">
     <% @introductions.each do |introduction| %>
       
       <!--アイテム-->
-      <div style = "padding: 10px;">
+      <div style="padding: 10px;">
         
         <!--サムネイル-->
-        <div style = "display:inline-block;vertical-align:top; padding-right: 20px;">
+        <div class="introduction-item__thumnail">
           <% if introduction.image1.present? %>
             <%= attachment_image_tag introduction, :image1, :fill, 120, 120, format: 'jpeg' %>
           <% else %>
@@ -27,7 +30,7 @@
           <% end %>
         </div>
 
-        <div style = "display:inline-block;">
+        <div style="display:inline-block;">
           <!--タグ-->
           <% @tags.where(introduction_id: introduction.id).each do |tag| %>
             <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default btn-xs" %>
@@ -41,6 +44,17 @@
           <!--いいね-->
           <%= introduction.good %>
         </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h3>よく使われているタグ</h3>
+    <p>タグ左側クリックでタグ検索、<br>タグ右側クリックでフォロー/解除を<br>切り替えることができます</p>
+    <% @hot_tags.each do |tag| %>
+      <% tag = tag[0] %>
+      <div id="follow_button_<%= tag %>", style="padding: 2px; display:inline-block;">
+        <%= render partial: 'follow', locals: { target: tag } %>
       </div>
     <% end %>
   </div>

@@ -1,15 +1,20 @@
 class StaticPagesController < ApplicationController
   include StaticPagesHelper
-  before_action :set_user, only: [:followtag_search, :hot_tag, :follow, :unfollow, :add_tag]
+  before_action :set_user, only: [:introductions, :followtag_search, :hot_tag, :follow, :unfollow, :add_tag]
   before_action :set_followtags, only: [:hot_tag, :follow, :unfollow]
   
 
   def top
   end
 
-  def search
+  def rakuten_search
     if params[:keyword]
       get_Rakuten_list(params[:keyword])
+    end
+  end
+
+  def youtube_search
+    if params[:keyword]
       get_Youtube_movie_list(params[:keyword])
     end
   end
@@ -42,6 +47,8 @@ class StaticPagesController < ApplicationController
     set_introductions
     set_likes
     set_tags
+    @hot_tags = Tag.group(:name).order('count_all DESC').limit(20).count
+    @follow_tags = @user.follow_tags
   end
 
   def hot_tag

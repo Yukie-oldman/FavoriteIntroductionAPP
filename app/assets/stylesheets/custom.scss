@@ -178,3 +178,32 @@ p {
 .introduction_search {
   padding-top: 20px;
 }
+
+// 共通
+.page_title {
+  display:inline-block;
+}
+
+.page-head {
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+}
+
+.page-content-leftside {
+  border-right-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+}
+
+.page-content-leftside-item {
+  border-right-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+}
+
+.introduction-item__thumnail {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 20px;
+}

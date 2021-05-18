@@ -30,8 +30,8 @@
         </div>
 
         <div class="introduction_search">
-          <%= link_to '楽天市場検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
-          <%= link_to 'Youtubeで検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
+          <%= link_to '楽天市場検索', rakuten_search_path(keyword: @introduction.name), class: "btn btn-danger" %>
+          <%= link_to 'Youtubeで検索', youtube_search_path(keyword: @introduction.name), class: "btn btn-danger" %>
         </div>
 
         <!--紹介の内容-->

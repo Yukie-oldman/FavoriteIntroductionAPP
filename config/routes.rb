@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   root 'static_pages#top'
-  get '/search', to: 'static_pages#search'
+  get '/rakuten_search', to: 'static_pages#rakuten_search'
+  get '/youtube_search', to: 'static_pages#youtube_search'
   get '/introductions', to: 'static_pages#introductions'
-  get '/hot_tag', to: 'static_pages#hot_tag'
   get '/signup', to: 'users#new'
   get '/unfollow', to: 'static_pages#unfollow'
   get '/follow', to: 'static_pages#follow'
