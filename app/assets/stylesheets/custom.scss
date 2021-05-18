@@ -136,6 +136,8 @@ p {
   }
 }
 
+// フォローボタン
+
 .btn_left {
   border-radius: 10px 0px 0px 10px;
   border-width: 1px 0px 1px 1px;
@@ -148,8 +150,31 @@ p {
   margin-left: -2px;
 }
 
+.follow {
+  transform:scale(1.5);
+  vertical-align: middle;
+}
+
 .notfollow {
   transform:scale(1.5);
-  // padding-left: 3px;
   vertical-align: middle;
+}
+
+// 紹介ページ
+
+.introduction_title {
+  border-bottom-style: solid;
+  font-size: 30px;
+  padding-top: 10px;
+}
+
+.introduction_caption {
+  color: gray;
+  font-size: 20px;
+  font-style: italic;
+  padding-top: 5px;
+}
+
+.introduction_search {
+  padding-top: 20px;
 }

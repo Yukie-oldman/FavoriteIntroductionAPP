@@ -12,10 +12,13 @@ class Introduction < ApplicationRecord
   attachment :image2
   attachment :image3
   
-  def create_tags(tags)
-    tags.split(',').each do |tag|
-      self.tags.create(name: tag)
-    end
+  def create_tags
+    self.buf_tags.split(',').each { |tag| self.tags.create(name: tag) }
+  end
+
+  def update_tags
+    self.tags.destroy_all
+    self.create_tags
   end
 
   def good

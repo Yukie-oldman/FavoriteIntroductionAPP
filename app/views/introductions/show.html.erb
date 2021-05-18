@@ -20,17 +20,17 @@
         <% end %>
 
         <!--アイテム名-->
-        <div class="item_title">
+        <div class="introduction_title">
           <%= @introduction.name %>
         </div>
 
         <!--キャプション-->
-        <div class="caption">
+        <div class="introduction_caption">
           <%= @introduction.caption %>
         </div>
 
-        <div>
-          <%= link_to '楽天で検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
+        <div class="introduction_search">
+          <%= link_to '楽天市場検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
           <%= link_to 'Youtubeで検索', search_path(keyword: @introduction.name), class: "btn btn-danger" %>
         </div>
 

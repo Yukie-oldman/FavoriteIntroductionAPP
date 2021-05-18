@@ -25,7 +25,7 @@ class IntroductionsController < ApplicationController
   def create
     @introduction = @user.introductions.new(introduction_params)
     if @introduction.save
-      @introduction.create_tags(introduction_params[:buf_tags])
+      @introduction.create_tags
       flash[:success] = "好なものの紹介を投稿しました！"
       redirect_to user_introduction_url @user,@introduction
     else
@@ -45,14 +45,12 @@ class IntroductionsController < ApplicationController
   end
   
   def edit
-
   end
     
   def update
     @introduction.update_attributes(introduction_params)
     if @introduction.save
-      @introduction.tags.destroy_all
-      @introduction.create_tags(introduction_params[:buf_tags])
+      @introduction.update_tags
       flash[:success] = "投稿内容を更新しました！"
       redirect_to user_introduction_url @user,@introduction
     else
@@ -76,4 +74,5 @@ class IntroductionsController < ApplicationController
     def set_likes
       @likes = Like.where(introduction_id: params[:id])
     end
+
 end

@@ -29,15 +29,14 @@ ActiveRecord::Schema.define(version: 2021_05_09_140624) do
   end
 
   create_table "introductions", force: :cascade do |t|
-    t.string "caption"
+    t.integer "user_id"
     t.string "name"
-    t.string "contents"
+    t.string "caption"
     t.string "buf_tags"
-    t.integer "good"
+    t.string "contents"
     t.string "image1_id"
     t.string "image2_id"
     t.string "image3_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_introductions_on_user_id"

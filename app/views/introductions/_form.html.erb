@@ -1,25 +1,27 @@
 <%= form_with(model: @introduction, url: yield(:url), local: true) do |f| %>
 
-<%= f.label :caption, class: "label-signup" %>
-<%= f.text_field :caption, class: "form-control", placeholder: "紹介したいものを一言で表してみましょう。" %>
+  <%= f.label :caption, class: "label-signup" %>
+  <%= f.text_field :caption, class: "form-control", placeholder: "紹介したいものを一言で表してみましょう。" %>
 
-<%= f.label :name, class: "label-signup" %>
-<%= f.text_field :name, class: "form-control", placeholder: "商品・サービス名が特定できるキーワードを入力してください。" %>
+  <%= f.label :name, class: "label-signup" %>
+  <%= f.text_field :name, class: "form-control", placeholder: "商品・サービス名が特定できるキーワードを入力してください。" %>
 
-<%= f.label 'タグ', class: "label-signup" %>
-<%= f.text_field :buf_tags, class: "form-control", placeholder: "タグはカンマ(,)で区切ってください。（例　りんご,果物,国産）" %>
+  <%= f.label 'タグ', class: "label-signup" %>
+  <%= f.text_field :buf_tags, class: "form-control", placeholder: "タグはカンマ(,)で区切ってください。（例　りんご,果物,国産）" %>
+  <%= @tags %>
 
-<%= f.label :contents, class: "label-signup" %>
-<%= f.text_area :contents, placeholder: "紹介文を入力してください。\r\n\r\n入力例\r\n■どんなところが良いですか\r\n■他と一線を画す長所など\r\n■こんな人におすすめしたい\r\n　　　　　　　　　　など", rows: "10",  class: "form-control" %>
+  <%= f.label :contents, class: "label-signup" %>
+  <%= f.text_area :contents, placeholder: "紹介文を入力してください。\r\n\r\n入力例\r\n■どんなところが良いですか\r\n■他と一線を画す長所など\r\n■こんな人におすすめしたい\r\n　　　　　　　　　　など", rows: "10",  class: "form-control" %>
 
-<%= f.label :image1, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image1.present? %></span>
-<%= f.attachment_field :image1 %>
+  <%= f.label :image1, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image1.present? %></span>
+  <%= f.attachment_field :image1 %>
 
-<%= f.label :image2, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image2.present? %></span>
-<%= f.attachment_field :image2 %>
+  <%= f.label :image2, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image2.present? %></span>
+  <%= f.attachment_field :image2 %>
 
-<%= f.label :image3, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image3.present? %></span>
-<%= f.attachment_field :image3 %>
+  <%= f.label :image3, class: "label-signup" %><span style="margin-left: 15px; color: #aaa;"><%= "(設定済み)" if @introduction.image3.present? %></span>
+  <%= f.attachment_field :image3 %>
 
-<%= f.submit yield(:button_text), class: "btn btn-primary btn-signup btn-block", style: "margin-top: 40px;" %>
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-signup btn-block", style: "margin-top: 40px;" %>
+
 <% end %>
