@@ -1,53 +1,53 @@
-<h1>フォローしているタグを含む紹介</h1>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-
-      <!--紹介アイテムリスト-->
-      <% @introductions.each do |introduction| %>
-        
-        <!--アイテム-->
-        <div style = "padding: 10px ">
-          
-          <!--サムネイル-->
-          <div style = "display:inline-block;vertical-align:top; padding-right: 20px;">
-            <% if introduction.image1.present? %>
-              <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
-            <% else %>
-              <%= image_tag 'noimage.png', size: '100x100' %>
-            <% end %>
-          </div>
-
-          <div style = "display:inline-block;">
-            <!--タグ-->
-            <% @tags.where(introduction_id: introduction.id).each do |tag| %>
-              <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default btn-xs" %>
-            <% end %>
-            <!--アイテム名-->
-            <p><h4><%= link_to introduction.name, introduction_path(introduction) %></h4></p>
-            
-            <!--キャプション-->
-            <h5><%= introduction.caption %></h5>
-
-            <!--いいね-->
-            <%= introduction.good %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <h3>フォロー中のタグ</h3>
-      <% @follow_tags.each do |tag| %>
-        <div id="follow_button_<%= tag.name %>">
-          <%= render partial: 'follow', locals: { target: tag.name } %>
-        </div>
-      <% end %>
-      <%= form_with(model: @f_tag, url: add_tag_path, local: true) do |f| %>
-        <%= f.text_field :name, class: "form-control", style: "width: 150px; display:inline-block;", placeholder: 'タグを入力' %>
-        <%= f.submit '追加', class: "btn btn-danger" %>
-      <% end %>
+<% url = "followtag_search?tag=" %> 
+  <div class="row page-head">
+    <div class="page_title col-md-7">
+      <h1>フォロータグを含む紹介一覧</h1>
     </div>
   </div>
+
+<div class="col-md-8 page-content-leftside">
+  <!--紹介アイテムリスト-->
+  <% @introductions.each do |introduction| %>
+    
+    <!--アイテム-->
+    <div style = "padding: 10px ">
+      
+      <!--サムネイル-->
+      <div style = "display:inline-block;vertical-align:top; padding-right: 20px;">
+        <% if introduction.image1.present? %>
+          <%= attachment_image_tag introduction, :image1, :fill, 100, 100, format: 'jpeg' %>
+        <% else %>
+          <%= image_tag 'noimage.png', size: '100x100' %>
+        <% end %>
+      </div>
+
+      <div style = "display:inline-block;">
+        <!--タグ-->
+        <% @tags.where(introduction_id: introduction.id).each do |tag| %>
+          <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default btn-xs" %>
+        <% end %>
+        <!--アイテム名-->
+        <p><h4><%= link_to introduction.name, introduction_path(introduction) %></h4></p>
+        
+        <!--キャプション-->
+        <h5 style="font-style: italic;"><%= introduction.caption %></h5>
+
+        <!--いいね-->
+        <%= introduction.good %>
+      </div>
+    </div>
+  <% end %>
 </div>
-  
+<div class="col-md-4">
+  <h3>フォロー中のタグ</h3>
+  <p>タグ左側クリックでタグ検索、<br>タグ右側クリックでフォロー/解除を<br>切り替えることができます</p>
+  <% @follow_tags.each do |tag| %>
+    <div id="follow_button_<%= tag.name %>">
+      <%= render partial: 'follow', locals: { target: tag.name, url: url } %>
+    </div>
+  <% end %>
+  <%= form_with(model: @f_tag, url: add_tag_path, local: true) do |f| %>
+    <%= f.text_field :name, class: "form-control", style: "width: 150px; display:inline-block;", placeholder: 'タグを入力' %>
+    <%= f.submit '追加', class: "btn btn-danger" %>
+  <% end %>
+</div>

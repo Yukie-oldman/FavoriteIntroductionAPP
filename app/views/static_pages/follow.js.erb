@@ -1,1 +1,1 @@
-$('#follow_button_' + '<%= "#{ @target }" %>').html("<%= j(render 'follow', target: @target ) %>");
+$('#follow_button_' + '<%= "#{ @target }" %>').html("<%= j(render 'follow', { target: @target, url: @url }) %>");

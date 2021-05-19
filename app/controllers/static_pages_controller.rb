@@ -25,11 +25,11 @@ class StaticPagesController < ApplicationController
   def add_tag
     if FollowTag.where(user_id: @user.id, name: params[:name]).present?
       flash[:success] = '登録済のタグです'
-      redirect_to request.referrer
+      redirect_to followtag_search_path
     else
       @user.follow_tags.create(name: params[:name])
       flash[:success] = 'タグを追加しました'
-      redirect_to request.referrer
+      redirect_to followtag_search_path
     end
 
   end
@@ -43,25 +43,17 @@ class StaticPagesController < ApplicationController
     set_tags
   end
 
-  def introductions
-    set_introductions
-    set_likes
-    set_tags
-    @hot_tags = Tag.group(:name).order('count_all DESC').limit(20).count
-    @follow_tags = @user.follow_tags
-  end
-
-  def hot_tag
-    @hot_tags = Tag.group(:name).order('count_all DESC').limit(20).count
-  end
+ 
 
   def follow
     @target = params[:tagname]
+    @url = params[:url]
     @user.follow_tags.create(name: params[:tagname])
   end
 
   def unfollow
     @target = params[:tagname]
+    @url = params[:url]
     @user.follow_tags.find_by(name: params[:tagname]).destroy
   end
   private

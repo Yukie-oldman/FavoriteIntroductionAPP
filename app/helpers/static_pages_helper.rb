@@ -34,7 +34,13 @@ module StaticPagesHelper
       puts e.result.body
     end
   end
-
+  def introductions
+    set_introductions
+    set_likes
+    set_tags
+    @hot_tags = Tag.group(:name).order('count_all DESC').limit(20).count
+    @follow_tags = @user.follow_tags
+  end
   # def get_yahoo_list
   #   requestURL = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
   #   @yahoo_list = 
