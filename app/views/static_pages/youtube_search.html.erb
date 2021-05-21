@@ -1,40 +1,29 @@
+<h1>Youtube検索結果</h1>
+<div>
+  <% if @youtube_movies.present? %>
     <div>
-      <% if @youtube_movies.present? %>
- <table class="result_table">
-    <thead>
-      <tr>
-        <th>動画サムネイル</th>
-        <th>動画タイトル</th>
-        <th>視聴回数</th>
-        <th>付箋</th>
-      </tr>
-    </thead>
-    <tbody>
       <% @youtube_movies.each do |movie| %>
-      <%# debugger %>
-        <tr>
-        <%# debugger %>
-          <!--動画サムネイル-->
-          <td>
-            <%= image_tag movie.snippet.thumbnails.medium.url %>
-          </td>
+        
+        <!--アイテム-->
+        <div style="padding: 10px;">
+          
+          <!--サムネイル-->
+          <div class="introduction-item__thumnail">
+            <%= image_tag movie.snippet.thumbnails.default.url %>
+          </div>
 
-          <!--動画タイトル-->
-          <td>              
-            <%= link_to movie.snippet.title, "https://www.youtube.com/watch?v=#{movie.id.videoId}", target: :_blank %>
-          </td>
+          <div style="display:inline-block;">
+            <!--タグ-->
+            <!--アイテム名-->
+            <p><h4><%= link_to movie.snippet.title.truncate(40), "https://www.youtube.com/watch?v=#{movie.id.videoId}", target: :_blank %></h4></p>
+            <h5><%= link_to movie.snippet.channelTitle, "https://www.youtube.com/channel/#{movie.snippet.channelId}", target: :_blank %></h5>
+            <!--キャプション-->
+            <h5><%= movie.snippet.publishedAt.strftime("%Y年%m月") %></h5>
 
-          <!--金額-->
-          <td>
-            <%#= movie['itemPrice'].to_s(:delimited) %>
-          </td>
-
-          <!--ブックマークボタン-->
-          <td>
-          </td>
-        </tr>
+            <!--いいね-->
+          </div>
+        </div>
       <% end %>
-    </tbody> 
-  </table> 
-<% end %>
     </div>
+  <% end %>
+</div>

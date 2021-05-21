@@ -31,7 +31,6 @@ class StaticPagesController < ApplicationController
       flash[:success] = 'タグを追加しました'
       redirect_to followtag_search_path
     end
-
   end
 
   def followtag_search
@@ -42,8 +41,6 @@ class StaticPagesController < ApplicationController
     set_likes
     set_tags
   end
-
- 
 
   def follow
     @target = params[:tagname]

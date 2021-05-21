@@ -8,7 +8,7 @@ module StaticPagesHelper
     # require 'youtube.rb'#先ほど上で準備したファイルを呼ぶ
     opts = Trollop::options do
       opt :q, 'Search term', type: :string, default: keyword
-      opt :max_results, 'Max results', :type => :int, :default => 3
+      opt :max_results, 'Max results', :type => :int, :default => 20
       opt :order, 'order', :type => String, :default => 'date'
       opt :regionCode, 'region', :type => String, :default => 'JP'
     end

@@ -1,47 +1,46 @@
-    <div>
-      <h2>楽天検索結果</h2>
-      <% if @goods.present? %>
-  <table class="result_table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>商品名</th>
-        <th>評価</th>
-        <th>金額</th>
-        <th>付箋</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @goods.each do |good| %>
+<div>
+  <h1>楽天検索結果</h1>
+  <% if @goods.present? %>
+    <table class="result_table">
+      <thead>
         <tr>
-          <!--商品イメージ-->
-          <td>
-            <% if good['imageFlag'] == 1 %>
-              <%= link_to (image_tag(good['smallImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;")), good['itemUrl'] %>
-            <% end %>
-          </td>
-
-          <!--商品名-->
-          <td>  
-            <%= link_to good['itemName'], good['itemUrl'] %>
-          </td>
-
-          <!--評価-->
-          <td>  
-            <%= good['reviewAverage'] %>
-          </td>
-
-          <!--金額-->
-          <td>
-            <%= good['itemPrice'].to_s(:delimited) %>
-          </td>
-
-          <!--ブックマークボタン-->
-          <td>
-          </td>
+          <th></th>
+          <th>商品名</th>
+          <th>評価</th>
+          <th>金額</th>
         </tr>
-      <% end %>
-    </tbody> 
-  </table>
-<% end %>
-    </div>
+      </thead>
+      <tbody>
+        <% @goods.each do |good| %>
+          <tr class="td-padding">
+            <!--商品イメージ-->
+            <td>
+              <% if good['imageFlag'] == 1 %>
+                <%= link_to (image_tag(good['smallImageUrls'][0], style: "width: 70px;height: 100px;display: inline-block;")), good['itemUrl'] %>
+              <% end %>
+            </td>
+
+            <!--商品名-->
+            <td>  
+              <%= link_to good['itemName'], good['itemUrl'] %>
+            </td>
+
+            <!--評価-->
+            <td style="text-align: center;"> 
+              <%= render 'rate', rate: good['reviewAverage'], count: good['reviewCount'] %>
+            </td>
+
+            <!--金額-->
+            <td style="text-align: right;">
+              <%= good['itemPrice'].to_s(:delimited) %>
+            </td>
+
+            <!--ブックマークボタン-->
+            <td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody> 
+    </table>
+  <% end %>
+</div>
