@@ -1,23 +1,16 @@
 class IntroductionsController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:edit, :index, :update, :create, :destroy]
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_introduction, only: [:show, :destroy, :edit, :update, :like, :unlike]
+  before_action :set_introduction, only: [:destroy, :edit, :update]
+  before_action :get_introduction, only: [:show, :like, :unlike]
   before_action :set_likes, onlt: [:show, :like, :unlike] 
   before_action :logged_in_user
-  before_action :correct_user
+  before_action :correct_user, only: [:edit, :create, :update, :destroy]
   
   def show
     @tags = Tag.where(introduction_id: params[:id])
   end
   
-  def like
-    @introduction.likes.create(voter_id: current_user.id)
-  end
-
-  def unlike
-    @introduction.likes.find_by(voter_id: current_user.id).destroy
-  end
-
   def new
     @introduction = Introduction.new
   end
@@ -57,6 +50,18 @@ class IntroductionsController < ApplicationController
       render :edit
     end
   end
+
+  def like
+    @introduction.likes.create(voter_id: current_user.id)
+  end
+
+  def unlike
+    @introduction.likes.find_by(voter_id: current_user.id).destroy
+  end
+
+  def introduce
+
+  end
   private
   
     def introduction_params
@@ -64,10 +69,15 @@ class IntroductionsController < ApplicationController
     end
 
     def set_user
-      @user = User.find(current_user.id)
+      # @user = User.find(current_user.id)
+      @user = User.find(params[:user_id])
     end
 
     def set_introduction
+      @introduction = @user.introductions.find(params[:id])
+    end
+
+    def get_introduction
       @introduction = Introduction.find(params[:id])
     end
 

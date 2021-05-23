@@ -1,10 +1,8 @@
-<% if current_user.id == @introduction.user_id %>
-  <%= link_to "編集", edit_user_introduction_path(@user, @introduction), class:"btn btn-success" %>
-  <%= link_to "削除", user_introduction_path(@user, @introduction), method: :delete, class:"btn btn-danger" ,data:{confirm:"削除しますか？"} %> 
-<% elsif @likes.find_by(voter_id: current_user.id).nil? %>
-  <%= link_to embedded_svg('hand-thumbs-up.svg', class: "good-button"), like_introduction_path(@introduction), remote: true %>
-
-<% else %>
-  <%= link_to embedded_svg('hand-thumbs-up-fill.svg', class: "good-button"), unlike_introduction_path(@introduction), remote: true %>
+<% if current_user.id != @introduction.user_id %> 
+  <% if @likes.find_by(voter_id: current_user.id).nil? %>
+    <%= link_to embedded_svg('hand-thumbs-up.svg', class: "good-button"), like_introduction_path(@introduction), remote: true %>
+  <% else %>
+    <%= link_to embedded_svg('hand-thumbs-up-fill.svg', class: "good-button"), unlike_introduction_path(@introduction), remote: true %>
+  <% end %>
 <% end %>
 <span class="good-point"><%= @introduction.good %></span>

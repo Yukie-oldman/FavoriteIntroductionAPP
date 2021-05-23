@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   include StaticPagesHelper
-  before_action :set_user, only: [:introductions, :followtag_search, :hot_tag, :follow, :unfollow, :add_tag]
-  before_action :set_followtags, only: [:hot_tag, :follow, :unfollow]
+  before_action :set_user, only: [:introductions, :followtag_search, :follow, :unfollow, :add_tag]
+  before_action :set_followtags, only: [:follow, :unfollow]
   
 
   def top
@@ -53,6 +53,7 @@ class StaticPagesController < ApplicationController
     @url = params[:url]
     @user.follow_tags.find_by(name: params[:tagname]).destroy
   end
+
   private
 
     def set_introductions

@@ -6,7 +6,7 @@ class Introduction < ApplicationRecord
   
   validates :caption, presence: true, length: { maximum: 30 }
   validates :name, presence: true, length: { maximum: 50 }
-  validates :contents, presence: true, length: { maximum: 300 }
+  validates :contents, presence: true, length: { maximum: 500 }
 
   attachment :image1
   attachment :image2

@@ -9,18 +9,15 @@ Rails.application.routes.draw do
   get '/follow', to: 'static_pages#follow'
   get '/followtag_search', to: 'static_pages#followtag_search'
   post '/add_tag', to: 'static_pages#add_tag'
-
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users do
+  resources :users, only: [:show, :edit, :create, :update, :destroy, :new]  do
     resources :introductions
-    member do
-      get 'edit_profile'
-    end
   end
-  resources :introductions do
+
+  resources :introductions, only: [:show] do
     member do
       get 'like'
       get 'unlike'

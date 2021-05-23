@@ -15,8 +15,8 @@
           </a>
           <ul class="dropdown-menu">
             <li class="list-label">ユーザー</li>
-            <li><%= link_to "紹介一覧", user_introductions_path(current_user) %></li>
-            <li><%= link_to "アカウント設定", edit_user_path(current_user) %></li>
+            <li><%= link_to "投稿した紹介", user_introductions_path(current_user) %></li>
+            <li><%= link_to "アカウント情報", user_path(current_user) %></li>
             <li class="divider"></li>
             <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
           </ul>

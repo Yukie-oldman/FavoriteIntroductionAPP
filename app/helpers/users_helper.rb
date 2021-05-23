@@ -1,9 +1,9 @@
 module UsersHelper
 
-  def top
-    @accounts = Account.where(user_id: current_user.id)
-    debugger
-  end
+  # def top
+  #   @accounts = Account.where(user_id: current_user.id)
+  #   debugger
+  # end
 
     private
   

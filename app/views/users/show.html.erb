@@ -2,13 +2,19 @@
 
 <div class="row">
   <h1>プロフィール</h1>
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-6 col-md-offset-3">
     <table class="table table-bordered">
       <tr>
-        <th class="plofile_table_th"><%= User.human_attribute_name :profile %></th>
-        <td><%= @user.profile %></td>
+        <th><%= User.human_attribute_name :name %></th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th><%= User.human_attribute_name :email %></th>
+        <td><%= @user.email %></td>
       </tr>
     </table>
-    <%= link_to "プロフィール編集", edit_profile_user_path(@user), class: "btn btn-primary" %>
+    <div class="pull-right">
+      <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
+    </div>
   </div>    
 </div>
