@@ -181,7 +181,7 @@ GEM
       racc (~> 1.4)
     optimist (3.0.1)
     os (1.1.1)
-    pg (0.20.0)
+    pg (1.1.0)
     public_suffix (4.0.6)
     puma (3.12.6)
     racc (1.5.2)
@@ -322,7 +322,7 @@ DEPENDENCIES
   mini_magick
   nokogiri
   optimist
-  pg (= 0.20.0)
+  pg (= 1.1)
   puma (~> 3.7)
   rails
   rails-i18n
