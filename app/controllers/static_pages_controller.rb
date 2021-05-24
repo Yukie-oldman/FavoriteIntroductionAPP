@@ -35,9 +35,14 @@ class StaticPagesController < ApplicationController
 
   def followtag_search
     @follow_tags = @user.follow_tags
-    str_tag = @follow_tags.pluck('name')
-    keyword = Tag.where(name: str_tag).pluck('introduction_id') 
-    @introductions = Introduction.find(keyword)
+    if params[:tag].present?
+      target_id = Tag.where(name: params[:tag]).pluck('introduction_id') 
+      @introductions = Introduction.find(target_id)
+    else
+      str_tag = @follow_tags.pluck('name')
+      target_id = Tag.where(name: str_tag).pluck('introduction_id') 
+      @introductions = Introduction.find(target_id)
+    end
     set_likes
     set_tags
   end
@@ -59,8 +64,8 @@ class StaticPagesController < ApplicationController
     def set_introductions
       @introductions = Introduction.order(id: "DESC")
       if params[:tag].present?
-        keyword = Tag.where(name: params[:tag]).pluck('introduction_id') 
-        @introductions = @introductions.find(keyword)
+        target_id = Tag.where(name: params[:tag]).pluck('introduction_id') 
+        @introductions = @introductions.find(target_id)
       elsif params[:keyword].present?
         case params[:category]
         when '1'
@@ -68,8 +73,8 @@ class StaticPagesController < ApplicationController
         when '2'
           @introductions = @introductions.where("caption LIKE ?","%#{params[:keyword]}%")
         when '3'
-          keyword = Tag.where("name LIKE ?","%#{params[:keyword]}%").pluck('introduction_id') 
-          @introductions = @introductions.find(keyword)
+          target_id = Tag.where("name LIKE ?","%#{params[:keyword]}%").pluck('introduction_id') 
+          @introductions = @introductions.find(target_id)
         end
       end
     end

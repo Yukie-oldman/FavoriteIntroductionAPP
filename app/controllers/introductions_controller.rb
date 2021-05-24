@@ -19,7 +19,7 @@ class IntroductionsController < ApplicationController
     @introduction = @user.introductions.new(introduction_params)
     if @introduction.save
       @introduction.create_tags
-      flash[:success] = "好なものの紹介を投稿しました！"
+      flash[:success] = "紹介を投稿しました！"
       redirect_to user_introduction_url @user,@introduction
     else
       render :new
@@ -28,7 +28,7 @@ class IntroductionsController < ApplicationController
 
   def destroy
     @introduction.destroy
-    flash[:success] = "紹介データを削除しました。"
+    flash[:success] = "投稿を削除しました。"
       redirect_to user_introductions_url @user
   end
   
@@ -69,7 +69,6 @@ class IntroductionsController < ApplicationController
     end
 
     def set_user
-      # @user = User.find(current_user.id)
       @user = User.find(params[:user_id])
     end
 
