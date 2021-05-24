@@ -10,6 +10,7 @@ module StaticPagesHelper
       opt :q, 'Search term', type: :string, default: keyword
       opt :max_results, 'Max results', :type => :int, :default => 20
       opt :order, 'order', :type => String, :default => 'date'
+      opt :type, 'type', :type => String, :default => 'video'
       opt :regionCode, 'region', :type => String, :default => 'JP'
     end
     
@@ -24,6 +25,7 @@ module StaticPagesHelper
           :q => opts[:q],
           :maxResults => opts[:max_results],
           :order => 'viewCount',
+          :type => opts[:type],
           :regionCode => opts[:regionCode]
         }
       )
@@ -41,8 +43,5 @@ module StaticPagesHelper
     @hot_tags = Tag.group(:name).order('count_all DESC').limit(20).count
     @follow_tags = @user.follow_tags
   end
-  # def get_yahoo_list
-  #   requestURL = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
-  #   @yahoo_list = 
-  # end
+
 end

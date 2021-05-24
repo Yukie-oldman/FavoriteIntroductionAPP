@@ -41,7 +41,7 @@ class IntroductionsController < ApplicationController
   end
     
   def update
-    @introduction.update_attributes(introduction_params)
+    @introduction.update(introduction_params)
     if @introduction.save
       @introduction.update_tags
       flash[:success] = "投稿内容を更新しました！"
