@@ -13,7 +13,7 @@
         <% end %>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-8 pull-right">
         <!--タグ-->
         <% @tags.each do |tag| %>
           <%= link_to tag.name, introductions_path(tag: tag.name), class: "btn btn-default" %>

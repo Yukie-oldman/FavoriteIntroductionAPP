@@ -11,10 +11,9 @@
         
         <li class="dropdown">
           <a href="#" class="dropdown-toggle header-font header-list" data-toggle="dropdown">
-            <%= current_user.name %> <b class="caret"></b>
+          アカウント <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li class="list-label">ユーザー</li>
             <li><%= link_to "投稿した紹介", user_introductions_path(current_user) %></li>
             <li><%= link_to "アカウント情報", user_path(current_user) %></li>
             <li class="divider"></li>
