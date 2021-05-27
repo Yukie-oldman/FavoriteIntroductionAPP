@@ -4,12 +4,12 @@
 
       <!--サムネイル表示-->
       <div class="col-md-3">
-        <% if @introduction.image1.nil? && @introduction.image2.nil? && @introduction.image3.nil? %>
+        <% if @introduction.image1.url.nil? && @introduction.image2.url.nil? && @introduction.image3.url.nil? %>
           <%= image_tag 'noimage.png', size: '250x250' %>
         <% else %>
-          <%= attachment_image_tag @introduction, :image1, :fill, 250, 250, format: 'jpeg' %>
-          <%= attachment_image_tag @introduction, :image2, :fill, 250, 250, format: 'jpeg' %>
-          <%= attachment_image_tag @introduction, :image3, :fill, 250, 250, format: 'jpeg' %>
+          <%= image_tag @introduction.image1.url if @introduction.image1.url.present? %>
+          <%= image_tag @introduction.image2.url if @introduction.image2.url.present? %>
+          <%= image_tag @introduction.image3.url if @introduction.image3.url.present? %>
         <% end %>
       </div>
 

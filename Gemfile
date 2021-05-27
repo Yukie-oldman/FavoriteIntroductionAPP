@@ -23,6 +23,7 @@ gem 'mini_magick'
 gem 'nokogiri'
 gem 'trollop'
 gem 'optimist'
+gem 'rmagick'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 

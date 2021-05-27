@@ -36,4 +36,8 @@ CSV.foreach('db/introduction.csv') do |record|
     :contents => record[4].gsub("\\r\\n","\r\n"))
 end
 
+puts ('created introductions')
+
 Introduction.all.each { |introduction| introduction.create_tags }
+
+puts ('created tags')

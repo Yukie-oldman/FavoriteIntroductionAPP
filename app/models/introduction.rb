@@ -8,9 +8,12 @@ class Introduction < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :contents, presence: true, length: { maximum: 500 }
 
-  attachment :image1
-  attachment :image2
-  attachment :image3
+  mount_uploader :image1, ImageUploader
+  mount_uploader :image2, ImageUploader
+  mount_uploader :image3, ImageUploader
+  # attachment :image1
+  # attachment :image2
+  # attachment :image3
   
   def create_tags
     self.buf_tags.split(',').each { |tag| self.tags.create(name: tag) }
