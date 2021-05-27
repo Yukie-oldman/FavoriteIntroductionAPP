@@ -24,8 +24,8 @@ gem 'nokogiri'
 gem 'trollop'
 gem 'optimist'
 gem 'rmagick'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+# gem "refile", require: "refile/rails", github: 'manfe/refile'
+# gem "refile-mini_magick"
 
 group :development, :test do
   gem 'sqlite3'
